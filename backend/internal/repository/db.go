@@ -36,7 +36,11 @@ func ConnectDB() {
 	}
 
 	// ✅ Migrar modelos automáticamente
-	err = db.AutoMigrate(&models.Alquimista{}, &models.Transmutation{})
+	err = db.AutoMigrate(
+		&models.Alquimista{},
+		&models.Transmutation{},
+		&models.Auditoria{}, // 👈 nueva tabla de auditoría
+	)
 	if err != nil {
 		log.Fatal("❌ Error ejecutando migraciones:", err)
 	}
